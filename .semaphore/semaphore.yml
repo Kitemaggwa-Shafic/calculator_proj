@@ -8,20 +8,11 @@ blocks:
   - name: Build
     task:
       jobs:
-        - name: 'Job #1'
-          commands: []
-      prologue:
-        commands:
-          - sem-version python 3.9
-          - checkout
-          - mkdir .pip_cache
-          - cache restore
-          - pip install --cache-dir .pip_cache -r requirements.txt
-  - name: Tests
-    task:
-      jobs:
-        - name: UnitTests
+        - name: Pip
           commands:
-            - python manage.py makemigrations
-            - python manage.py migrate
-            - python manage.py test
+            - sem-version python 3.9
+            - checkout
+            - mkdir .pip_cache
+            - cache restore
+            - pip install --cache-dir .pip_cache -r requirements.txt
+            - cache store
