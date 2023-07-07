@@ -20,7 +20,7 @@ blocks:
       jobs:
         - name: docker build
           commands:
-            - 'echo "${(5e543256c480ac577d30f76f9120eb74)}" | docker login -u "${(5e543256c480ac577d30f76f9120eb74)}" --password-stdin'
+            - 'echo "${(kitemaggwashafic)}" | docker login -u "${(justinenabakiibi92)}" --password-stdin'
             - 'docker pull '
             - '$DOCKER_USERNAME/calculator_proj:latest || true'
             - 'docker build --cache-from=$DOCKER_USERNAME/calculator_proj:latest -t '
