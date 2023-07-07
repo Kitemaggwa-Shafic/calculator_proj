@@ -10,10 +10,10 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
-            - 'docker pull $DOCKER_USERNAME/django-markdown-editor:latest || true'
-            - 'docker build --cache-from=$DOCKER_USERNAME/django-markdown-editor:latest -t $DOCKER_USERNAME/django-markdown-editor:latest .'
-            - 'docker push $DOCKER_USERNAME/django-markdown-editor:latest'
+            - echo "justinenabakiibi92" | docker login -u "kitemaggwashafic" --password-stdin
+            - 'docker pull $DOCKER_USERNAME/calculator_proj:latest || true'
+            - 'docker build --cache-from=$DOCKER_USERNAME/calculator_proj:latest -t $DOCKER_USERNAME/calculator_proj:latest .'
+            - 'docker push $DOCKER_USERNAME/calculator_proj:latest'
       secrets:
         - name: dockerhub
       prologue:
@@ -23,7 +23,6 @@ blocks:
           - cache restore
           - mkdir -p .pip_cache
           - pip install --cache-dir .pip_cache -r requirements.txt
-          - cd calculator_proj
           - 'python manage.py makemigrations '
           - python manage.py migrate
           - cd ..
