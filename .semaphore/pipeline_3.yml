@@ -28,4 +28,4 @@ blocks:
             - 'docker push '
             - '$DOCKER_USERNAME/calculator_proj:latest'
       secrets:
-        - name: dockerhub1
+        - name: group3
