@@ -37,13 +37,3 @@ blocks:
           commands:
             - pip install flake8
             - flake8 calculator_proj/ --max-line-length=127
-after_pipeline:
-  task:
-    jobs:
-      - name: Dockerize
-        commands: []
-promotions:
-  - name: Dockerize  Pipeline
-    pipeline_file: pipeline_3.yml
-    auto_promote:
-      when: branch = 'master' AND result = 'passed'
