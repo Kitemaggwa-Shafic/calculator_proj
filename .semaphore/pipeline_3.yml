@@ -20,7 +20,7 @@ blocks:
       jobs:
         - name: docker build
           commands:
-            - 'echo "${()}" | docker login -u "${()}" --password-stdin'
+            - 'echo "${}" | docker login -u "${}" --password-stdin'
             - 'docker pull '
             - '$DOCKER_USERNAME/calculator_proj:latest || true'
             - 'docker build --cache-from=$DOCKER_USERNAME/calculator_proj:latest -t '
