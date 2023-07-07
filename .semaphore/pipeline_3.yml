@@ -1,0 +1,31 @@
+version: v1.0
+name: Dockerize pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu2004
+global_job_config:
+  prologue:
+    commands:
+      - sem-version python 3.9
+      - checkout
+      - cache restore
+      - mkdir -p .pip_cache
+      - pip install --cache-dir .pip_cache -r requirements.txt
+      - 'python manage.py makemigrations '
+      - python manage.py migrate
+blocks:
+  - name: Dockerize
+    task:
+      jobs:
+        - name: docker build
+          commands:
+            - 'echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin'
+            - 'docker pull '
+            - '$DOCKER_USERNAME/calculator_proj:latest || true'
+            - 'docker build --cache-from=$DOCKER_USERNAME/calculator_proj:latest -t '
+            - '$DOCKER_USERNAME/calculator_proj:latest .'
+            - 'docker push '
+            - '$DOCKER_USERNAME/calculator_proj:latest'
+      secrets:
+        - name: dockerhub1
